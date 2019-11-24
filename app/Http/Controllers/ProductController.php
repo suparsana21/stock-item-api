@@ -35,6 +35,38 @@ class ProductController extends Controller
      }
 
      /**
+     * Show all list from item
+     * @var Request
+     * @return Eloquent Paginate
+     */
+
+     public function list(Request $request) // Acception request for filtering
+     {
+         $data = Product::select('products.*');
+
+         $limit = 10;
+
+         if(isset($request->limit)) // set product length for each page
+         {
+             $limit = $request->limit;
+         }
+
+         if(isset($request->type)) {
+             switch ($request->type) {
+                 case 'newly':
+                     $data->orderBy('created_at');
+                     break;
+                 
+                 default:
+                     
+                     break;
+             }
+         }
+
+         return $this->successListResponse($data->get());
+     }
+
+     /**
      * Create Item
      * @var Request
      * @return Controller@successObjResponse
