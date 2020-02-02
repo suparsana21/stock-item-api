@@ -18,6 +18,8 @@ $router->get('/', function () use ($router) {
 // Auth
 
 $router->post('login','AuthController@login');
+$router->post('register','AuthController@register');
+
 $router->group(['middleware' => 'auth:api'], function () use ($router) {
 
     // Product    
@@ -28,5 +30,5 @@ $router->group(['middleware' => 'auth:api'], function () use ($router) {
     $router->get('product/{id}','ProductController@show');
     $router->put('product/{id}','ProductController@update');
     $router->delete('product/{id}','ProductController@destroy');
-    
+
 });

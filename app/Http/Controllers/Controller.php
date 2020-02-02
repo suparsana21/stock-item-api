@@ -50,7 +50,7 @@ class Controller extends BaseController
     /**
      * Return error msg
      */
-    public function errorWithMessage($data,$message = "Error data tracking",$code)
+    public function errorWithMessage($data,$message = "Error data tracking",$code = 409)
     {
         return response()->json([
             'error' => true,
