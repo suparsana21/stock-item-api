@@ -67,6 +67,19 @@ class ProductController extends Controller
      }
 
      /**
+     * Show all list count
+     * @var Request
+     * @return Eloquent Paginate
+     */
+
+    public function count(Request $request) // Acception request for filtering
+    {
+        $data = Product::select('products.*')->count();
+
+        return $data;
+    }
+
+     /**
      * Create Item
      * @var Request
      * @return Controller@successObjResponse

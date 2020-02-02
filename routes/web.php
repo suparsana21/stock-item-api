@@ -15,12 +15,18 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-// Product
+// Auth
 
-$router->get('product','ProductController@index');
-$router->get('product-list','ProductController@list');
-$router->get('product-count','ProductController@count');
-$router->post('product','ProductController@store');
-$router->get('product/{id}','ProductController@show');
-$router->put('product/{id}','ProductController@update');
-$router->delete('product/{id}','ProductController@destroy');
+$router->post('login','AuthController@login');
+$router->group(['middleware' => 'auth:api'], function () use ($router) {
+
+    // Product    
+    $router->get('product','ProductController@index');
+    $router->get('product-list','ProductController@list');
+    $router->get('product-count','ProductController@count');
+    $router->post('product','ProductController@store');
+    $router->get('product/{id}','ProductController@show');
+    $router->put('product/{id}','ProductController@update');
+    $router->delete('product/{id}','ProductController@destroy');
+    
+});
