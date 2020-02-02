@@ -31,4 +31,7 @@ $router->group(['middleware' => 'auth:api'], function () use ($router) {
     $router->put('product/{id}','ProductController@update');
     $router->delete('product/{id}','ProductController@destroy');
 
+    // Profile
+    $router->get('profile','ProfileController@index');
+
 });
